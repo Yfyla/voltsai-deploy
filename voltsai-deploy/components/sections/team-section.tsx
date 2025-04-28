@@ -1,6 +1,6 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useRef } from "react"
 import Link from "next/link"
 import { motion } from "framer-motion"
 import { Button } from "@/components/ui/button"
@@ -9,13 +9,15 @@ import { Linkedin, Twitter } from "lucide-react"
 
 export default function TeamSection() {
   const [hoveredMember, setHoveredMember] = useState<number | null>(null)
+  const videoRefs = [useRef<HTMLVideoElement>(null), useRef<HTMLVideoElement>(null), useRef<HTMLVideoElement>(null)]
 
   const teamMembers = [
     {
       name: "Saad",
       role: "CCIE Certified Network Engineer",
       bio: "Previous Senior Network Engineer in FIFA World Cup 2022, currently working for Qatar Olympics.",
-      image: "/placeholder.svg?height=400&width=400",
+      image: "/photos/ai-pic1.jpg",
+      video: "/videos/ai-vid1.mp4",
       initials: "S",
       linkedin: "#",
       twitter: "#",
@@ -24,7 +26,8 @@ export default function TeamSection() {
       name: "Ali",
       role: "CCIE Certified Network Engineer",
       bio: "Previous Senior Network Engineer in FIFA World Cup 2022, currently working for Qatar Olympics.",
-      image: "/placeholder.svg?height=400&width=400",
+      image: "/photos/ai-pic2.jpg",
+      video: "/videos/ai-vid2.mp4",
       initials: "A",
       linkedin: "#",
       twitter: "#",
@@ -33,12 +36,28 @@ export default function TeamSection() {
       name: "Ahmed",
       role: "AI Solutions Architect",
       bio: "Expert in developing and implementing AI-powered solutions for enterprise clients.",
-      image: "/placeholder.svg?height=400&width=400",
+      image: "/photos/ai-pic3.jpg",
+      video: "/videos/ai-vid3.mp4",
       initials: "A",
       linkedin: "#",
       twitter: "#",
     },
   ]
+
+  const handleMouseEnter = (index: number) => {
+    setHoveredMember(index)
+    if (videoRefs[index].current) {
+      videoRefs[index].current.play()
+    }
+  }
+
+  const handleMouseLeave = (index: number) => {
+    setHoveredMember(null)
+    if (videoRefs[index].current) {
+      videoRefs[index].current.pause()
+      videoRefs[index].current.currentTime = 0
+    }
+  }
 
   return (
     <section className="py-20">
@@ -58,19 +77,31 @@ export default function TeamSection() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
               whileHover={{ y: -5 }}
-              onHoverStart={() => setHoveredMember(index)}
-              onHoverEnd={() => setHoveredMember(null)}
+              onHoverStart={() => handleMouseEnter(index)}
+              onHoverEnd={() => handleMouseLeave(index)}
             >
               <Card className="h-full flex flex-col overflow-hidden">
                 <div className="relative">
                   <div className="aspect-square overflow-hidden">
+                    {/* Photo (always visible) */}
                     <img
-                      src={member.image || "/placeholder.svg"}
+                      src={member.image}
                       alt={member.name}
-                      className="object-cover w-full h-full transition-transform duration-500 ease-in-out"
-                      style={{
-                        transform: hoveredMember === index ? "scale(1.05)" : "scale(1)",
-                      }}
+                      className={`object-cover w-full h-full transition-opacity duration-300 ${
+                        hoveredMember === index ? "opacity-0" : "opacity-100"
+                      }`}
+                    />
+                    {/* Video (visible on hover) */}
+                    <video
+                      ref={videoRefs[index]}
+                      src={member.video}
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+                        hoveredMember === index ? "opacity-100" : "opacity-0"
+                      }`}
+                      style={{ objectPosition: 'top' }}
+                      muted
+                      loop
+                      playsInline
                     />
                   </div>
                   <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
