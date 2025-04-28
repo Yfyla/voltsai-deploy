@@ -4,8 +4,9 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { FC } from "react"
 
-export default function CustomersPage() {
+const CustomersPage: FC = () => {
   return (
     <main className="flex min-h-screen flex-col">
       {/* Page Header */}
@@ -553,4 +554,6 @@ export default function CustomersPage() {
     </main>
   )
 }
+
+export default CustomersPage
 
