@@ -69,16 +69,14 @@ export default function ServicesSection() {
               className="h-full"
             >
               <Card
-                className={`h-full flex flex-col cursor-pointer transition-all ${
-                  activeService === index ? "border-primary shadow-lg" : ""
-                }`}
+                className={`h-full flex flex-col cursor-pointer transition-all ${activeService === index ? "border-primary shadow-lg" : ""
+                  }`}
                 onClick={() => setActiveService(index)}
               >
                 <CardHeader>
                   <div
-                    className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${
-                      activeService === index ? "bg-primary text-primary-foreground" : "bg-muted"
-                    }`}
+                    className={`w-12 h-12 rounded-full flex items-center justify-center mb-4 ${activeService === index ? "bg-primary text-primary-foreground" : "bg-muted"
+                      }`}
                   >
                     {index + 1}
                   </div>
@@ -90,9 +88,8 @@ export default function ServicesSection() {
                     {service.features.map((feature, i) => (
                       <li key={i} className="flex items-start gap-2">
                         <Check
-                          className={`h-5 w-5 mt-0.5 flex-shrink-0 ${
-                            activeService === index ? "text-primary" : "text-muted-foreground"
-                          }`}
+                          className={`h-5 w-5 mt-0.5 flex-shrink-0 ${activeService === index ? "text-primary" : "text-muted-foreground"
+                            }`}
                         />
                         <span>{feature}</span>
                       </li>
@@ -101,7 +98,7 @@ export default function ServicesSection() {
                 </CardContent>
                 <CardFooter>
                   <Button className="w-full" variant={activeService === index ? "default" : "outline"} asChild>
-                    <Link href="#services">
+                    <Link href={index === 0 ? "#team" : index === 1 ? "#create-influencer" : "#services"}>
                       {service.cta} <ArrowRight className="ml-2 h-4 w-4" />
                     </Link>
                   </Button>

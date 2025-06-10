@@ -13,32 +13,32 @@ export default function TeamSection() {
 
   const teamMembers = [
     {
-      name: "Saad",
-      role: "CCIE Certified Network Engineer",
-      bio: "Previous Senior Network Engineer in FIFA World Cup 2022, currently working for Qatar Olympics.",
+      name: "Annie",
+      role: "Ai model (advanced version)",
+      bio: "Annie is from our one of the most advanced ai influencers,targeting your products in such a way to reach a milestone that your product never reached before",
       image: "/photos/ai-pic1.jpg",
       video: "/videos/ai-vid1.mp4",
+      initials: "A",
+      linkedin: "#",
+      twitter: "#",
+    },
+    {
+      name: "Sarah",
+      role: "Ai model (advanced version)",
+      bio: "sarah is from our one of the most advanced ai influencers,targeting your products in such a way to reach a milestone that your product never reached before",
+      image: "/photos/ai-pic2.jpg",
+      video: "/videos/ai-vid2.mp4",
       initials: "S",
       linkedin: "#",
       twitter: "#",
     },
     {
-      name: "Ali",
-      role: "CCIE Certified Network Engineer",
-      bio: "Previous Senior Network Engineer in FIFA World Cup 2022, currently working for Qatar Olympics.",
-      image: "/photos/ai-pic2.jpg",
-      video: "/videos/ai-vid2.mp4",
-      initials: "A",
-      linkedin: "#",
-      twitter: "#",
-    },
-    {
-      name: "Ahmed",
-      role: "AI Solutions Architect",
-      bio: "Expert in developing and implementing AI-powered solutions for enterprise clients.",
+      name: "Cristina",
+      role: "Ai model (advanced version)",
+      bio: "Cristina is from our one of the most advanced ai influencers,targeting your products in such a way to reach a milestone that your product never reached before",
       image: "/photos/ai-pic3.jpg",
       video: "/videos/ai-vid3.mp4",
-      initials: "A",
+      initials: "C",
       linkedin: "#",
       twitter: "#",
     },
@@ -63,20 +63,20 @@ export default function TeamSection() {
     <section className="py-20">
       <div className="container">
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Meet Our Expert Team</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Meet Our AI Influencers</h2>
           <p className="text-muted-foreground">
             Industry leaders with extensive experience in AI, networking, and digital solutions
           </p>
         </div>
-
+        
         <div className="grid md:grid-cols-3 gap-8">
           {teamMembers.map((member, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              whileHover={{ y: -5 }}
+              whileHover={{ y: -2 }}
               onHoverStart={() => handleMouseEnter(index)}
               onHoverEnd={() => handleMouseLeave(index)}
             >
@@ -87,17 +87,15 @@ export default function TeamSection() {
                     <img
                       src={member.image}
                       alt={member.name}
-                      className={`object-cover w-full h-full transition-opacity duration-300 ${
-                        hoveredMember === index ? "opacity-0" : "opacity-100"
-                      }`}
+                      className={`object-cover w-full h-full transition-opacity duration-300 ${hoveredMember === index ? "opacity-0" : "opacity-50"
+                        }`}
                     />
                     {/* Video (visible on hover) */}
                     <video
                       ref={videoRefs[index]}
                       src={member.video}
-                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
-                        hoveredMember === index ? "opacity-100" : "opacity-0"
-                      }`}
+                      className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${hoveredMember === index ? "opacity-100" : "opacity-0"
+                        }`}
                       style={{ objectPosition: 'top' }}
                       muted
                       loop

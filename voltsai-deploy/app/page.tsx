@@ -7,12 +7,14 @@ import HeroSection from "@/components/sections/hero-section"
 import ServicesSection from "@/components/sections/services-section"
 import CustomersSection from "@/components/sections/customers-section"
 import TeamSection from "@/components/sections/team-section"
+import CreateInfluencerSection from "@/components/sections/create-influencer-section"
 import ContactSection from "@/components/sections/contact-section"
 import IndustriesSection from "@/components/sections/industries-section"
 import HealthSection from "@/components/sections/health-section"
 import AnimatedCounter from "@/components/animated-counter"
 import { ThemeToggle } from "@/components/theme-toggle"
 import AuthSection from "@/components/sections/auth-section"
+import { motion } from "framer-motion"
 
 export default function Home() {
   return (
@@ -116,6 +118,11 @@ export default function Home() {
         <TeamSection />
       </section>
 
+      {/* Create Influencer Section */}
+      <section id="create-influencer">
+        <CreateInfluencerSection />
+      </section>
+
       {/* Customers Section */}
       <section id="customers">
         <CustomersSection />
@@ -132,24 +139,149 @@ export default function Home() {
       </section>
 
       {/* Global Presence */}
-      <section className="py-20 bg-muted/30">
-        <div className="container">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Global Circuit of Solutions</h2>
+      <section className="py-20 bg-muted/30 relative overflow-hidden">
+        {/* Animated background elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Pulsing circles */}
+          <div className="absolute top-1/4 left-1/4 w-32 h-32 rounded-full bg-primary/10 animate-pulse" style={{ animationDelay: '0s' }} />
+          <div className="absolute top-1/3 right-1/3 w-24 h-24 rounded-full bg-primary/10 animate-pulse" style={{ animationDelay: '0.5s' }} />
+          <div className="absolute bottom-1/4 right-1/4 w-28 h-28 rounded-full bg-primary/10 animate-pulse" style={{ animationDelay: '1s' }} />
+          <div className="absolute bottom-1/3 left-1/3 w-20 h-20 rounded-full bg-primary/10 animate-pulse" style={{ animationDelay: '1.5s' }} />
+
+          {/* Animated connecting lines */}
+          <div className="absolute inset-0">
+            <svg className="w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <line x1="25" y1="25" x2="75" y2="75" stroke="rgba(var(--primary), 0.1)" strokeWidth="0.5" className="animate-draw" />
+              <line x1="75" y1="25" x2="25" y2="75" stroke="rgba(var(--primary), 0.1)" strokeWidth="0.5" className="animate-draw" style={{ animationDelay: '0.5s' }} />
+              <line x1="50" y1="0" x2="50" y2="100" stroke="rgba(var(--primary), 0.1)" strokeWidth="0.5" className="animate-draw" style={{ animationDelay: '1s' }} />
+              <line x1="0" y1="50" x2="100" y2="50" stroke="rgba(var(--primary), 0.1)" strokeWidth="0.5" className="animate-draw" style={{ animationDelay: '1.5s' }} />
+            </svg>
+          </div>
+        </div>
+
+        <div className="container relative z-10">
+          <motion.div
+            className="text-center max-w-3xl mx-auto mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-primary to-primary/60">
+              Global Circuit of Solutions
+            </h2>
             <p className="text-muted-foreground">
               Connecting businesses worldwide with cutting-edge AI solutions and expert services
             </p>
-          </div>
-          <div className="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden">
+          </motion.div>
+
+          <motion.div
+            className="relative h-[400px] md:h-[500px] rounded-xl overflow-hidden bg-gradient-to-br from-background to-muted/50 backdrop-blur-sm"
+            initial={{ opacity: 0, scale: 0.95 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
             <div className="absolute inset-0 flex items-center justify-center">
-              <Globe className="w-full h-full max-w-4xl text-primary/10" />
-              <div className="absolute top-1/4 left-1/4 w-4 h-4 rounded-full bg-primary animate-pulse" />
-              <div className="absolute top-1/3 right-1/3 w-4 h-4 rounded-full bg-primary animate-pulse" />
-              <div className="absolute bottom-1/4 right-1/4 w-4 h-4 rounded-full bg-primary animate-pulse" />
-              <div className="absolute bottom-1/3 left-1/3 w-4 h-4 rounded-full bg-primary animate-pulse" />
+              <Globe className="w-full h-full max-w-4xl text-primary/10 animate-float" />
+
+              {/* Animated connection points */}
+              <motion.div
+                className="absolute top-1/4 left-1/4 w-4 h-4 rounded-full bg-primary"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.5, 1, 0.5]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              />
+              <motion.div
+                className="absolute top-1/3 right-1/3 w-4 h-4 rounded-full bg-primary"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.5, 1, 0.5]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 0.5
+                }}
+              />
+              <motion.div
+                className="absolute bottom-1/4 right-1/4 w-4 h-4 rounded-full bg-primary"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.5, 1, 0.5]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1
+                }}
+              />
+              <motion.div
+                className="absolute bottom-1/3 left-1/3 w-4 h-4 rounded-full bg-primary"
+                animate={{
+                  scale: [1, 1.2, 1],
+                  opacity: [0.5, 1, 0.5]
+                }}
+                transition={{
+                  duration: 2,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: 1.5
+                }}
+              />
+
+              {/* Animated connecting lines */}
+              <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <motion.path
+                  d="M25,25 L75,75"
+                  stroke="rgba(var(--primary), 0.2)"
+                  strokeWidth="0.5"
+                  fill="none"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 2, repeat: Infinity, repeatType: "reverse" }}
+                />
+                <motion.path
+                  d="M75,25 L25,75"
+                  stroke="rgba(var(--primary), 0.2)"
+                  strokeWidth="0.5"
+                  fill="none"
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 2, repeat: Infinity, repeatType: "reverse", delay: 0.5 }}
+                />
+              </svg>
             </div>
-          </div>
+          </motion.div>
         </div>
+
+        <style jsx global>{`
+          @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+          }
+          @keyframes draw {
+            0% { stroke-dasharray: 0, 100; }
+            100% { stroke-dasharray: 100, 0; }
+          }
+          .animate-float {
+            animation: float 6s ease-in-out infinite;
+          }
+          .animate-draw {
+            stroke-dasharray: 100;
+            stroke-dashoffset: 100;
+            animation: draw 2s linear infinite;
+          }
+        `}</style>
       </section>
 
       {/* Auth Section */}
