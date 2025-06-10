@@ -1,12 +1,11 @@
 {
-  "name": "my-v0-project",
+  "name": "voltsai-deploy",
   "version": "0.1.0",
   "private": true,
   "packageManager": "npm@10.2.4",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "vercel-build": "next build",
     "start": "next start",
     "lint": "next lint",
     "export": "next build",
